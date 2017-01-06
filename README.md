@@ -14,7 +14,11 @@
 ### 1.1 typeof  <a name='1.1'/>
 
 <a name='1.1.1'/>
-1. What is a potential pitfall with using 
+
+#### 1.1.1
+
+What is a potential pitfall with using 
+
 ```javascript
 typeof bar === "object" 
 ```
@@ -22,10 +26,15 @@ to determine if bar is an object? How can this pitfall be avoided?
 
 [See Answer](#a1.1.1)
 
+-----
+
 ### 1.2 scope <a name='1.2'/>
 
 <a name='1.2.1'/>
-1. What will the code below output to the console and why?
+#### 1.2.1
+
+What will the code below output to the console and why?
+
 ```javascript
 var myObject = {
     foo: "bar",
@@ -44,25 +53,27 @@ myObject.func();
 
 [See Answer](#a1.2.1)
 
-
-
 <a name='1.2.2'/>
 
-2. What is the significance of, and reason for, wrapping the entire content of a JavaScript source file in a function block?
+#### 1.2.2
+
+What is the significance of, and reason for, wrapping the entire content of a JavaScript source file in a function block?
 
 [See Answer](#a1.2.2)
 
-
+-----
 
 ### 1.3 Error Handling <a name='1.3'/>
 
 <a name='1.3.1'/>
 
-1. What is the significance, and what are the benefits, of including `'use strict'` at the beginning of a JavaScript source file?
+#### 1.3.1
+
+What is the significance, and what are the benefits, of including `'use strict'` at the beginning of a JavaScript source file?
 
 [See Answer](#a1.3.1)
 
-
+-----------
 
 
 ##Answers
