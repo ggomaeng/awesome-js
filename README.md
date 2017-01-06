@@ -9,6 +9,10 @@
     - [1.4 - Numbers](#1.4)
     - [1.5 - Events and Timing](#1.5)
     - [1.6 - Functions](#1.6)
+    - [1.7 - Reference](#1.7)
+    - [1.8 - Comparison and Logical Operators](#1.8)
+    - [1.9 - Objects](#1.9)
+    - [1.10 - DOM](#1.10)
 - [Algorithms](#algorithms)
     - [2.1 - String Palindrome](#2.1)
 - [Answers](#answers)
@@ -41,6 +45,25 @@ to determine if bar is an object? How can this pitfall be avoided?
 What is `NaN`? What is its type? How can you reliably test if a value is equal to `NaN`?
 
 [See Answer](#a1.1.2)
+
+-------
+
+<a name='1.1.3'/>
+
+#### 1.1.3
+
+What will the code below output to the console and why ?
+
+```javascript
+console.log(1 +  "2" + "2");
+console.log(1 +  +"2" + "2");
+console.log(1 +  -"1" + "2");
+console.log(+"1" +  "1" + "2");
+console.log( "A" - "B" + "2");
+console.log( "A" - "B" + 2);
+```
+
+[See Answer](#a1.1.3)
 
 ----
 
@@ -80,6 +103,101 @@ myObject.func();
 What is the significance of, and reason for, wrapping the entire content of a JavaScript source file in a function block?
 
 [See Answer](#a1.2.2)
+
+-------
+
+<a name='1.2.3'/>
+
+#### 1.2.3
+
+Consider the following code snippet:
+
+```javascript
+for (var i = 0; i < 5; i++) {
+  var btn = document.createElement('button');
+  btn.appendChild(document.createTextNode('Button ' + i));
+  btn.addEventListener('click', function(){ console.log(i); });
+  document.body.appendChild(btn);
+}
+```
+
+(a) What gets logged to the console when the user clicks on “Button 4” and why?
+
+(b) Provide one or more alternate implementations that will work as expected.
+
+[See Answer](#a1.2.3)
+
+-----
+
+<a name='1.2.4'/>
+
+#### 1.2.4
+
+What is a “closure” in JavaScript? Provide an example.
+
+[See Answer](#a1.2.4)
+
+-----
+
+<a name='1.2.5'/>
+
+#### 1.2.5
+
+What will be the output of the following code:
+
+```javascript
+for (var i = 0; i < 5; i++) {
+  setTimeout(function() { console.log(i); }, i * 1000 );
+}
+```
+
+Explain your answer. How could the use of closures help here?
+
+[See Answer](#a1.2.5)
+
+-----
+
+<a name='1.2.6'/>
+
+#### 1.2.6
+
+Consider the code snippet below. What will the console output be and why?
+
+```javascript
+(function(x) {
+    return (function(y) {
+        console.log(x);
+    })(2)
+})(1);
+```
+
+[See Answer](#a1.2.6)
+
+------
+
+<a name='1.2.7'/>
+
+#### 1.2.7
+
+What will the following code output to the console and why:
+
+```javascript
+var hero = {
+    _name: 'John Doe',
+    getSecretIdentity: function (){
+        return this._name;
+    }
+};
+
+var stoleSecretIdentity = hero.getSecretIdentity;
+
+console.log(stoleSecretIdentity());
+console.log(hero.getSecretIdentity());
+```
+
+What is the issue with this code and how can it be fixed.
+
+[See Answer](#a1.2.7)
 
 -----
 
@@ -122,6 +240,29 @@ function foo2()
 
 [See Answer](#a1.3.2)
 
+------
+
+<a name='1.3.3'/>
+
+#### 1.3.3
+
+The following recursive code will cause a stack overflow if the array list is too large. How can you fix this and still retain the recursive pattern?
+
+```javascript
+var list = readHugeList();
+
+var nextListItem = function() {
+    var item = list.pop();
+
+    if (item) {
+        // process the list item...
+        nextListItem();
+    }
+};
+```
+
+[See Answer](#a1.3.3)
+
 ---------
 
 <a name='1.4'/>
@@ -157,6 +298,8 @@ Discuss possible ways to write a function `isInteger(x)` that determines if `
 
 <a name='1.5.1'/>
 
+#### 1.5.1
+
 In what order will the numbers 1-4 be logged to the console when the code below is executed? Why?
 
 ```javascript
@@ -189,7 +332,130 @@ console.log(sum(2)(3));  // Outputs 5
 
 [See Answer](#a1.6.1)
 
+------
+
+<a name='1.6.2'/>
+
+#### 1.6.2
+
+What will the following code output to the console:
+
+```javascript
+console.log((function f(n){return ((n > 1) ? n * f(n-1) : n)})(10));
+```
+
+Explain your answer.
+
+[See Answer](#a1.6.2)
+
 ----
+
+<a name='1.7'/>
+
+### 1.7 Reference
+
+<a name='1.7.1'/>
+
+#### 1.7.1
+
+What will the code below output to the console and why?
+
+```javascript
+var arr1 = "john".split('');
+var arr2 = arr1.reverse();
+var arr3 = "jones".split('');
+arr2.push(arr3);
+console.log("array 1: length=" + arr1.length + " last=" + arr1.slice(-1));
+console.log("array 2: length=" + arr2.length + " last=" + arr2.slice(-1));
+```
+
+[See Answer](#a1.7.1)
+
+-------
+
+<a name='1.8'/>
+
+### 1.8 Comparison and Logical Operators
+
+<a name='1.8.1'/>
+
+#### 1.8.1
+
+What would the following lines of code output to the console?
+
+```javascript
+console.log("0 || 1 = "+(0 || 1));
+console.log("1 || 2 = "+(1 || 2));
+console.log("0 && 1 = "+(0 && 1));
+console.log("1 && 2 = "+(1 && 2));
+```
+
+Explain your answer.
+
+[See Answer](#a1.8.1)
+
+----
+
+<a name='1.8.2'/>
+
+#### 1.8.2
+
+What will be the output when the following code is executed? Explain.
+
+```javascript
+console.log(false == '0')
+console.log(false === '0')
+```
+
+[See Answer](#a1.8.2)
+
+------
+
+<a name='1.9'/>
+
+### 1.9 Objects
+
+<a name='1.9.1'/>
+
+#### 1.9.1
+
+What is the output out of the following code? Explain your answer.
+
+```javascript
+var a={},
+    b={key:'b'},
+    c={key:'c'};
+
+a[b]=123;
+a[c]=456;
+
+console.log(a[b]);
+```
+
+[See Answer](#a1.9.1)
+
+------
+
+<a name='1.10'/>
+
+### 1.10 DOM (Document Object Model)
+
+<a name='1.10.1'/>
+
+#### 1.10.1
+
+Create a function that, given a DOM Element on the page, will visit the element itself and *all* of its descendents (*not just its immediate children*). For each element visited, the function should pass that element to a provided callback function.
+
+The arguments to the function should be:
+
+- a DOM element
+- a callback function (that takes a DOM element as its argument)
+
+[See Answer](#a1.10.1)
+
+----------
+
+
 
 
 
@@ -271,6 +537,41 @@ A better solution would either be to use `value !== value`, which would *only*
 
 [Back to Question](#1.1.2)
 
+-----
+
+<a name='a1.1.3'/>
+
+#### 1.1.3
+
+The above code will output the following to the console:
+
+```javascript
+"122"
+"32"
+"02"
+"112"
+"NaN2"
+NaN
+```
+
+Here’s why…
+
+The fundamental issue here is that JavaScript (ECMAScript) is a loosely typed language and it performs automatic type conversion on values to accommodate the operation being performed. Let’s see how this plays out with each of the above examples.
+
+**Example 1:** `1 + "2" + "2"` **Outputs:** `"122"` **Explanation:** The first operation to be performed in `1 + "2"`. Since one of the operands (`"2"`) is a string, JavaScript assumes it needs to perform string concatenation and therefore converts the type of `1` to `"1"`, `1 + "2"` yields `"12"`. Then, `"12" + "2"` yields `"122"`.
+
+**Example 2:** `1 + +"2" + "2"` **Outputs:** `"32"` **Explanation:** Based on order of operations, the first operation to be performed is `+"2"` (the extra `+` before the first `"2"` is treated as a unary operator). Thus, JavaScript converts the type of `"2"` to numeric and then applies the unary `+` sign to it (i.e., treats it as a positive number). As a result, the next operation is now `1 + 2` which of course yields `3`. But then, we have an operation between a number and a string (i.e., `3` and `"2"`), so once again JavaScript converts the type of the numeric value to a string and performs string concatenation, yielding `"32"`.
+
+**Example 3:** `1 + -"1" + "2"` **Outputs:** `"02"` **Explanation:** The explanation here is identical to the prior example, except the unary operator is `-` rather than `+`. So `"1"` becomes `1`, which then becomes `-1` when the `-` is applied, which is then added to `1` yielding `0`, which is then converted to a string and concatenated with the final `"2"` operand, yielding `"02"`.
+
+**Example 4:** `+"1" + "1" + "2"` **Outputs:** `"112"` **Explanation:** Although the first `"1"` operand is typecast to a numeric value based on the unary `+` operator that precedes it, it is then immediately converted back to a string when it is concatenated with the second `"1"` operand, which is then concatenated with the final `"2"` operand, yielding the string `"112"`.
+
+**Example 5:** `"A" - "B" + "2"` **Outputs:** `"NaN2"` **Explanation:** Since the `-` operator can not be applied to strings, and since neither `"A"` nor `"B"` can be converted to numeric values, `"A" - "B"` yields `NaN` which is then concatenated with the string `"2"` to yield “NaN2”.
+
+**Example 6:** `"A" - "B" + 2` **Outputs:** `NaN` **Explanation:** As exlained in the previous example, `"A" - "B"` yields `NaN`. But any operator applied to NaN with any other numeric operand will still yield `NaN`.
+
+[Back to Question](#1.1.3)
+
 -------
 
 ### 1.2 Scope
@@ -309,6 +610,156 @@ Another feature of this technique is to allow for an easily referenceable (presu
 ```
 
 [Back to Question](#1.2.2)
+
+--------
+
+<a name='a1.2.3'/>
+
+#### 1.2.3
+
+(a) No matter what button the user clicks the number 5 will *always* be logged to the console. This is because, at the point that the `onclick` method is invoked (for *any* of the buttons), the `for` loop has already completed and the variable `i` already has a value of 5. (Bonus points for the interviewee if they know enough to talk about how execution contexts, variable objects, activation objects, and the internal “scope” property contribute to the [closure](#http://conceptf1.blogspot.kr/2013/11/javascript-closures.html) behavior.) 
+
+(b) The key to making this work is to capture the value of `i` at each pass through the `for` loop by passing it into a newly created function object. Here are three possible ways to accomplish this:
+
+```javascript
+for (var i = 0; i < 5; i++) {
+  var btn = document.createElement('button');
+  btn.appendChild(document.createTextNode('Button ' + i));
+  btn.addEventListener('click', (function(i) {
+    return function() { console.log(i); };
+  })(i));
+  document.body.appendChild(btn);
+}
+```
+
+Alternatively, you could wrap the entire call to `btn.addEventListener` in the new anonymous function:
+
+```javascript
+for (var i = 0; i < 5; i++) {
+  var btn = document.createElement('button');
+  btn.appendChild(document.createTextNode('Button ' + i));
+  (function (i) {
+    btn.addEventListener('click', function() { console.log(i); });
+  })(i);
+  document.body.appendChild(btn);
+}
+```
+
+Or, we could replace the `for` loop with a call to the array object’s native `forEach` method:
+
+```javascript
+['a', 'b', 'c', 'd', 'e'].forEach(function (value, i) {
+  var btn = document.createElement('button');
+  btn.appendChild(document.createTextNode('Button ' + i));
+  btn.addEventListener('click', function() { console.log(i); });
+  document.body.appendChild(btn);
+});
+```
+
+[Back to Question](#1.2.3)
+
+------
+
+<a name='a1.2.4'/>
+
+#### 1.2.4
+
+A closure is an inner function that has access to the variables in the outer (enclosing) function’s scope chain. The closure has access to variables in three scopes; specifically: (1) variable in its own scope, (2) variables in the enclosing function’s scope, and (3) global variables.
+
+Here is a simple example:
+
+```javascript
+var globalVar = "xyz";
+
+(function outerFunc(outerArg) {
+  var outerVar = 'a';
+  
+  (function innerFunc(innerArg) {
+    var innerVar = 'b';
+    
+    console.log(
+      "outerArg = " + outerArg + "\n" +
+      "innerArg = " + innerArg + "\n" +
+      "outerVar = " + outerVar + "\n" +
+      "innerVar = " + innerVar + "\n" +
+      "globalVar = " + globalVar);
+    
+  })(456);
+})(123);
+```
+
+In the above example, variables from `innerFunc`, `outerFunc`, and the global namespace are **all** in scope in the `innerFunc`. The above code will therefore produce the following output:
+
+```javascript
+outerArg = 123
+innerArg = 456
+outerVar = a
+innerVar = b
+globalVar = xyz
+```
+
+[Back to Question](#1.2.4)
+
+--------
+
+<a name='a1.2.5'/>
+
+#### 1.2.5
+
+The code sample shown will **not** display the values 0, 1, 2, 3, and 4 as might be expected; rather, it will display 5, 5, 5, 5, and 5.
+
+The reason for this is that each function executed within the loop will be executed *after* the entire loop has completed and *all* will therefore reference the *last* value stored in `i`, which was 5.
+
+[**Closures**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) can be used to prevent this problem by creating a unique scope for each iteration, storing each unique value of the variable within its scope, as follows:
+
+```javascript
+for (var i = 0; i < 5; i++) {
+	(function(x) {
+    	setTimeout(function() { console.log(x); }, x * 1000 );
+    })(i);
+}
+```
+
+This will produce the presumably desired result of logging 0, 1, 2, 3, and 4 to the console.
+
+[Back to Question](#1.2.5)
+
+-----
+
+<a name='a1.2.6'/>
+
+#### 1.2.6
+
+The output will be `1`, even though the value of `x` is never set in the inner function. Here’s why:
+
+As explained in our [JavaScript Hiring Guide](https://www.toptal.com/javascript#hiring-guide), a **closure** is a function, along with all variables or functions that were in-scope at the time that the closure was created. In JavaScript, a closure is implemented as an “inner function”; i.e., a function defined within the body of another function. An important feature of closures is that an inner function still has access to the outer function’s variables.
+
+Therefore, in this example, since `x` is not defined in the inner function, the scope of the outer function is searched for a defined variable `x`, which is found to have a value of `1`.
+
+[Back to Question](#1.2.6)
+
+--------
+
+<a name='a1.2.7'/>
+
+#### 1.2.7
+
+The code will output:
+
+```javascript
+undefined
+John Doe
+```
+
+The first `console.log` prints `undefined` because we are extracting the method from the `hero` object, so `stoleSecretIdentity()` is being invoked in the global context (i.e., the window object) where the `_name` property does not exist.
+
+One way to fix the `stoleSecretIdentity()` function is as follows:
+
+```javascript
+var stoleSecretIdentity = hero.getSecretIdentity.bind(hero);
+```
+
+[Back to Question](#1.2.7)
 
 ----------
 
@@ -364,6 +815,31 @@ No error is thrown since the remainder of the code is perfectly valid, even thou
 This behavior also argues for following the convention of placing an opening curly brace at the end of a line in JavaScript, rather than on the beginning of a new line. As shown here, this becomes more than just a stylistic preference in JavaScript.
 
 [Back to Question](#1.3.2)
+
+------
+
+<a name='a1.3.3'/>
+
+#### 1.3.3
+
+The potential stack overflow can be avoided by modifying the `nextListItem` function as follows:
+
+```javascript
+var list = readHugeList();
+
+var nextListItem = function() {
+    var item = list.pop();
+
+    if (item) {
+        // process the list item...
+        setTimeout( nextListItem, 0);
+    }
+};
+```
+
+The stack overflow is eliminated because the event loop handles the recursion, not the call stack. When `nextListItem` runs, if `item` is not null, the timeout function (`nextListItem`) is pushed to the event queue and the function exits, thereby leaving the call stack clear. When the event queue runs its timed-out event, the next `item` is processed and a timer is set to again invoke `nextListItem`. Accordingly, the method is processed from start to finish without a direct recursive call, so the call stack remains clear, regardless of the number of iterations.
+
+[Back to Question](#1.3.3)
 
 -----
 
@@ -513,7 +989,143 @@ When a function is invoked, JavaScript does not require the number of arguments 
 
 [Back to Question](#1.6.1)
 
+---------
+
+<a name='a1.6.2'/>
+
+#### 1.6.2
+
+The code will output the value of 10 factorial (i.e., 10!, or 3,628,800).
+
+Here’s why:
+
+The named function `f()` calls itself recursively, until it gets down to calling `f(1)` which simply returns `1`. Here, therefore, is what this does:
+
+```javascript
+f(1): returns n, which is 1
+f(2): returns 2 * f(1), which is 2
+f(3): returns 3 * f(2), which is 6
+f(4): returns 4 * f(3), which is 24
+f(5): returns 5 * f(4), which is 120
+f(6): returns 6 * f(5), which is 720
+f(7): returns 7 * f(6), which is 5040
+f(8): returns 8 * f(7), which is 40320
+f(9): returns 9 * f(8), which is 362880
+f(10): returns 10 * f(9), which is 3628800
+```
+
+[Back to Question](#1.6.2)
+
 -----
+
+### 1.7 Reference
+
+<a name='a1.7.1'/>
+
+#### 1.7.1
+
+The logged output will be:
+
+```javascript
+"array 1: length=5 last=j,o,n,e,s"
+"array 2: length=5 last=j,o,n,e,s"
+```
+
+`arr1` and `arr2` are the same after the above code is executed for the following reasons:
+
+- Calling an array object’s `reverse()` method doesn’t only *return* the array in reverse order, it also reverses the order of the array *itself* (i.e., in this case, `arr1`).
+- The `reverse()` method returns a reference to the array itself (i.e., in this case, `arr1`). As a result, `arr2` is simply a reference to (rather than a copy of) `arr1`. Therefore, when anything is done to `arr2` (i.e., when we invoke `arr2.push(arr3);`), `arr1` will be affected as well since `arr1` and `arr2` are simply references to the same object.
+
+And a couple of side points here that can sometimes trip someone up in answering this question:
+
+- Passing an array to the `push()` method of another array pushes that *entire* array as a *single* element onto the end of the array. As a result, the statement `arr2.push(arr3);` adds `arr3` in its entirety as a single element to the end of `arr2` (i.e., it does *not* concatenate the two arrays, that’s what the `concat()` method is for).
+- Like Python, JavaScript honors negative subscripts in calls to array methods like `slice()` as a way of referencing elements at the end of the array; e.g., a subscript of -1 indicates the last element in the array, and so on.
+
+[Back to Question](#1.7.1)
+
+-----
+
+### 1.8 Comparison and Logical Operators
+
+<a name='a1.8.1'/>
+
+#### 1.8.1
+
+The code will output the following four lines:
+
+```javascript
+0 || 1 = 1
+1 || 2 = 1
+0 && 1 = 0
+1 && 2 = 2
+```
+
+In JavaScript, both `||` and `&&` are logical operators that return the first fully-determined “logical value” when evaluated from left to right.
+
+**The or (||) operator.** In an expression of the form `X||Y`, `X` is first evaluated and interpreted as a boolean value. If this boolean value is `true`, then `true` (1) is returned and `Y` is not evaluated, since the “or” condition has already been satisfied. If this boolean value is “false”, though, we still don’t know if `X||Y` is true or false until we evaluate `Y`, and interpret it as a boolean value as well.
+
+Accordingly, `0 || 1` evaluates to true (1), as does `1 || 2`.
+
+**The and (&&) operator.** In an expression of the form `X&&Y`, `X` is first evaluated and interpreted as a boolean value. If this boolean value is `false`, then `false` (0) is returned and `Y` is not evaluated, since the “and” condition has already failed. If this boolean value is “true”, though, we still don’t know if `X&&Y` is true or false until we evaluate `Y`, and interpret it as a boolean value as well.
+
+However, the interesting thing with the `&&` operator is that when an expression is evaluated as “true”, then the expression itself is returned. This is fine, since it counts as “true” in logical expressions, but also can be used to return that value when you care to do so. This explains why, somewhat surprisingly, `1 && 2` returns 2 (whereas you might it expect it to return `true` or `1`).
+
+[Back to Question](#1.8.1)
+
+------
+
+<a name='a1.8.2'/>
+
+#### 1.8.2
+
+The code will output:
+
+```javascript
+true
+false
+```
+
+In JavaScript, there are two sets of equality operators. The triple-equal operator `===` behaves like any traditional equality operator would: evaluates to true if the two expressions on either of its sides have the same type and the same value. The double-equal operator, however, tries to coerce the values before comparing them. It is therefore generally good practice to use the `===` rather than `==`. The same holds true for `!==` vs `!=`.
+
+[Back to Question](#1.8.2)
+
+---------
+
+### 1.9 Objects
+
+<a name='a1.9.1'/>
+
+#### 1.9.1
+
+The output of this code will be `456` (*not* `123`).
+
+The reason for this is as follows: When setting an object property, JavaScript will implicitly **stringify** the parameter value. In this case, since `b` and `c` are both objects, they will *both* be converted to `"[object Object]"`. As a result, `a[b]` and`a[c]` are both equivalent to `a["[object Object]"]` and can be used interchangeably. Therefore, setting or referencing `a[c]` is precisely the same as setting or referencing `a[b]`.
+
+[Back to Question](#1.9.1)
+
+--------
+
+### 1.10 DOM (Document Object Model)
+
+<a name='a1.10.1'/>
+
+#### 1.10.1
+
+Visiting all elements in a tree (DOM) is a classic [Depth-First-Search algorithm](https://en.wikipedia.org/wiki/Depth-first_search) application. Here’s an example solution:
+
+```javascript
+function Traverse(p_element,p_callback) {
+   p_callback(p_element);
+   var list = p_element.children;
+   for (var i = 0; i < list.length; i++) {
+       Traverse(list[i],p_callback);  // recursive call
+   }
+}
+```
+
+[Back to Question](#1.10.1)
+
+---------
 
 <a name='a2.1'/>
 
