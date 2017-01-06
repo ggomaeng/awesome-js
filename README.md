@@ -3,9 +3,10 @@
 
 ##Table of Contents
 - [Fundamentals](#fundamentals)
-    - [1.1 - typeof](#1.1)
-    - [1.2 - scope](#1.2)
-    - [1.3 - error handling](#1.3)
+    - [1.1 - Typeof](#1.1)
+    - [1.2 - Scope](#1.2)
+    - [1.3 - Error Handling](#1.3)
+    - [1.4 - Numbers](#1.4)
 - Algorithms
 - Answers
 - Credits
@@ -27,6 +28,16 @@ to determine if bar is an object? How can this pitfall be avoided?
 [See Answer](#a1.1.1)
 
 -----
+
+<a name='1.1.2'/>
+
+#### 1.1.2
+
+What is `NaN`? What is its type? How can you reliably test if a value is equal to `NaN`?
+
+[See Answer](#a1.1.2)
+
+----
 
 ### 1.2 scope <a name='1.2'/>
 
@@ -77,13 +88,57 @@ What is the significance, and what are the benefits, of including `'use strict'
 
 -----------
 
+<a name='1.3.2'/>
+
+#### 1.3.2
+
+Consider the two functions below. Will they both return the same thing? Why or why not?
+
+```javascript
+function foo1()
+{
+  return {
+      bar: "hello"
+  };
+}
+
+function foo2()
+{
+  return
+  {
+      bar: "hello"
+  };
+}
+```
+
+[See Answer](#a1.3.2)
+
+---------
+
+### 1.4 Numbers <a name='1.4'/>
+
+<a name='1.4.1' />
+
+#### 1.4.1
+
+What will the code below output? Explain your answer.
+
+```javascript
+console.log(0.1 + 0.2);
+console.log(0.1 + 0.2 == 0.3);
+```
+
+[See Answer](#a1.4.1)
 
 ##Answers
 
 ### 1.1 typeof
 
 <a name='a1.1.1'/>
-1. In Javascript, ```null``` is also considered an object. Therefore, the code below surprises new developers.
+
+#### 1.1.1
+
+In Javascript, ```null``` is also considered an object. Therefore, the code below surprises javascript newcomers.
 
 ```javascript
 var bar = null;
@@ -110,6 +165,34 @@ Second, the above solution will return true if bar is an array (e.g., if var bar
 console.log((bar !== null) && (typeof bar === "object") && (toString.call(bar) !== "[object Array]"));
 ```
 [Back to Question](#1.1.1)
+
+----
+
+<a name='a1.1.2'/>
+
+#### 1.1.2
+
+The `NaN` property represents a value that is “not a number”. This special value results from an operation that could not be performed either because one of the operands was non-numeric (e.g., `"abc" / 4`), or because the result of the operation is non-numeric (e.g., an attempt to divide by zero).
+
+While this seems straightforward enough, there are a couple of somewhat surprising characteristics of `NaN` that can result in hair-pulling bugs if one is not aware of them.
+
+For one thing, although `NaN` means “not a number”, its type is, believe it or not, `Number`:
+
+```javascript
+console.log(typeof NaN === "number");  // logs "true"
+```
+
+Additionally, `NaN` compared to anything – even itself! – is false:
+
+```javascript
+console.log(NaN === NaN);  // logs "false"
+```
+
+A *semi-reliable* way to test whether a number is equal to NaN is with the built-in function `isNaN()`, but even using [`isNaN()` is an imperfect solution](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN#Confusing_special-case_behavior).
+
+A better solution would either be to use `value !== value`, which would *only* produce true if the value is equal to NaN. Also, ES6 offers a new [`Number.isNaN()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN) function, which is a different and more reliable than the old global `isNaN()` function.
+
+[Back to Question](#1.1.2)
 
 -------
 
@@ -173,5 +256,56 @@ Some of the key benefits of strict mode include:
 
 ------
 
+<a name='a1.3.2'/>
 
+#### 1.3.2
+
+Surprisingly, these two functions will *not* return the same thing. Rather:
+
+```javascript
+console.log("foo1 returns:");
+console.log(foo1());
+console.log("foo2 returns:");
+console.log(foo2());
+```
+
+will yield:
+
+```javascript
+foo1 returns:
+Object {bar: "hello"}
+foo2 returns:
+undefined 
+```
+
+Not only is this surprising, but what makes this particularly gnarly is that `foo2()` returns undefined without any error being thrown.
+
+The reason for this has to do with the fact that semicolons are technically optional in JavaScript (although omitting them is generally really bad form). As a result, when the line containing the `return` statement (with nothing else on the line) is encountered in `foo2()`, a semicolon is automatically inserted immediately after the return statement.
+
+No error is thrown since the remainder of the code is perfectly valid, even though it doesn’t ever get invoked or do anything (it is simply an unused code block that defines a property `bar` which is equal to the string `"hello"`).
+
+This behavior also argues for following the convention of placing an opening curly brace at the end of a line in JavaScript, rather than on the beginning of a new line. As shown here, this becomes more than just a stylistic preference in JavaScript.
+
+[Back to Question](#1.3.2)
+
+-----
+
+### 1.4 Numbers
+
+<a name='a1.4.1'/>
+
+#### 1.4.1
+
+An educated answer to this question would simply be: “You can’t be sure. it might print out “0.3” and “true”, or it might not. Numbers in JavaScript are all treated with floating point precision, and as such, may not always yield the expected results.”
+
+The example provided above is classic case that demonstrates this issue. Surprisingly, it will print out:
+
+```
+0.30000000000000004
+false
+```
+
+[Back to Question](#1.4.1)
+
+-------
 
