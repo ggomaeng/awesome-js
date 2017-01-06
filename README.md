@@ -8,6 +8,7 @@
     - [1.3 - Error Handling](#1.3)
     - [1.4 - Numbers](#1.4)
     - [1.5 - Events and Timing](#1.5)
+    - [1.6 - Functions](#1.6)
 - [Algorithms](#algorithms)
     - [2.1 - String Palindrome](#2.1)
 - [Answers](#answers)
@@ -171,7 +172,24 @@ In what order will the numbers 1-4 be logged to the console when the code below 
 
 -----
 
+<a name='1.6'/>
 
+### 1.6 Functions
+
+<a name='1.6.1'/>
+
+#### 1.6.1
+
+Write a `sum` method which will work properly when invoked using either syntax below.
+
+```javascript
+console.log(sum(2,3));   // Outputs 5
+console.log(sum(2)(3));  // Outputs 5
+```
+
+[See Answer](#a1.6.1)
+
+----
 
 
 
@@ -185,7 +203,7 @@ Write a simple function (less than 80 characters) that returns a boolean indicat
 
 [See Answer](#a2.1)
 
--------
+---
 
 
 
@@ -453,6 +471,50 @@ When a value of zero is passed as the second argument to `setTimeout()`, it att
 
 ------
 
+### 1.6 Functions
+
+<a name='a1.6.1'/>
+
+#### 1.6.1
+
+There are (at least) two ways to do this:
+
+**METHOD 1**
+
+```javascript
+function sum(x) {
+  if (arguments.length == 2) {
+    return arguments[0] + arguments[1];
+  } else {
+    return function(y) { return x + y; };
+  }
+}
+```
+
+In JavaScript, functions provide access to an `arguments` object which provides access to the actual arguments passed to a function. This enables us to use the `length` property to determine at runtime the number of arguments passed to the function.
+
+If two arguments are passed, we simply add them together and return.
+
+Otherwise, we assume it was called in the form `sum(2)(3)`, so we return an anonymous function that adds together the argument passed to `sum()` (in this case 2) and the argument passed to the anonymous function (in this case 3).
+
+**METHOD 2**
+
+```javascript
+function sum(x, y) {
+  if (y !== undefined) {
+    return x + y;
+  } else {
+    return function(y) { return x + y; };
+  }
+}
+```
+
+When a function is invoked, JavaScript does not require the number of arguments to match the number of arguments in the function definition. If the number of arguments passed exceeds the number of arguments in the function definition, the excess arguments will simply be ignored. On the other hand, if the number of arguments passed is less than the number of arguments in the function definition, the missing arguments will have a value of `undefined` when referenced within the function. So, in the above example, by simply checking if the 2nd argument is undefined, we can determine which way the function was invoked and proceed accordingly.
+
+[Back to Question](#1.6.1)
+
+-----
+
 <a name='a2.1'/>
 
 ### 2.1 String Palindrome
@@ -461,8 +523,8 @@ The following one line function will return `true` if `str` is a palindrome;
 
 ```javascript
 function isPalindrome(str) {
-    str = str.replace(/\W/g, '').toLowerCase();
-    return (str == str.split('').reverse().join(''));
+    str = str.replace(/\W/g, '').toLowerCase(); //removes all non-word character
+    return (str == str.split('').reverse().join('')); //remove space, reverse, and check
 }
 ```
 
