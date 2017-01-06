@@ -2,29 +2,59 @@
 🦄 A curated list of javascript fundamentals for preparing interviews.
 
 ##Table of Contents
- 1. Fundamentals
-    - 1.1 typeof
-    - 1.2 scope
- 2. Algorithms
- 3. Answers
+ - [Fundamentals](#fundamentals)
+    - [1.1 typeof](#1.1-typeof)
+    - [1.2 scope](#1.2-scope)
+ - Algorithms
+ - Answers
+ - Credits
 
 ##Fundamentals
-
-
 ####1.1 typeof
 <a name='1.1.1'></a>
-1.1.1: What is a potential pitfall with using 
-```javascript1.8
+1. What is a potential pitfall with using 
+```javascript
 typeof bar === "object" 
 ```
 to determine if bar is an object? How can this pitfall be avoided?
  
-[Answer](#a1.1.1)
+[See Answer](#a1.1.1)
+
+
+####1.2 scope
+<a name='1.2.1'></a>
+1. What will the code below output to the console and why?
+```javascript
+var myObject = {
+    foo: "bar",
+    func: function() {
+        var self = this;
+        console.log("outer func:  this.foo = " + this.foo);
+        console.log("outer func:  self.foo = " + self.foo);
+        (function() {
+            console.log("inner func:  this.foo = " + this.foo);
+            console.log("inner func:  self.foo = " + self.foo);
+        }());
+    }
+};
+myObject.func();
+```
+
+
+
+
+
+
+
+
+
+
 
 
 ##Answers
-<a name='a1.1.1'></a>
+
 ####1.1 typeof
+<a name='a1.1.1'></a>
 1. In Javascript, ```null``` is also considered an object. Therefore, the code below surprises new developers.
 
 ```javascript
