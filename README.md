@@ -53,6 +53,8 @@ myObject.func();
 
 [See Answer](#a1.2.1)
 
+------
+
 <a name='1.2.2'/>
 
 #### 1.2.2
@@ -109,7 +111,7 @@ console.log((bar !== null) && (typeof bar === "object") && (toString.call(bar) !
 ```
 [Back to Question](#1.1.1)
 
-
+-------
 
 ### 1.2 Scope
 
@@ -132,7 +134,7 @@ In the inner function, though, `this` no longer refers to `myObject`. As a re
 
 [Back to Question](#1.2.1)
 
-
+---------
 
 <a name='a1.2.2'/>
 
@@ -148,7 +150,7 @@ Another feature of this technique is to allow for an easily referenceable (presu
 
 [Back to Question](#1.2.2)
 
-
+----------
 
 ### 1.3 Error Handling
 
@@ -168,6 +170,8 @@ Some of the key benefits of strict mode include:
 - **Throws error on invalid usage of delete.** The `delete` operator (used to remove properties from objects) cannot be used on non-configurable properties of the object. Non-strict code will fail silently when an attempt is made to delete a non-configurable property, whereas strict mode will throw an error in such a case.
 
 [Back to Question](#1.3.1)
+
+------
 
 
 
