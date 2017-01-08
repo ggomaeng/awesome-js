@@ -16,7 +16,9 @@
     - [1.11 - Prototype](#1.11)
 - [Algorithms](#algorithms)
     - [2.1 - String Palindrome](#2.1)
-    - [2.2 - Square Root](#2.2) 
+    - [2.2 - Square Root](#2.2)
+    - [2.3 - Flattening Array](#2.3) 
+    - [2.4 - Reordering Objects in Array](#2.4) 
 - [Answers](#answers)
 - [Credits](#credits)
 
@@ -517,9 +519,40 @@ Manually calculate the square root of a number with Javascript
 
 [See Answer](#a2.2)
 
+------
+
+<a name='2.3'/>
+
+#### 2.3 Flattening Arrays
+
+Can you write a function that deeply flattens an array?
+
+```javascript
+//example
+input = [0, 1, [2, 3], [[4, [5]]]];
+output = [0, 1, 2, 3, 4, 5];
+```
+
+[See Answer](#a2.3)
+
 ---
 
+<a name='2.4'/>
 
+#### 2.4 Reordering Objects in Array
+
+We have an array of objects A and an array of indexes B. Reorder objects in array A with given indexes in array B. Do not change array A's length. 
+
+```javascript
+//example
+var A = [C, D, E, F, G];
+var B = [3, 0, 4, 1, 2];
+
+sort(A, B);
+// A is now [D, F, G, C, E];
+```
+
+[See Answer](#a2.4)
 
 ##Answers
 
@@ -1345,12 +1378,50 @@ function sqrt(number, guess) {
 }
 ```
 
-
-
 [Back to Question](#2.2)
+
+-----------
+
+<a name='a2.3'/>
+
+### 2.3 Flattening Arrays
+
+```javascript
+function flatten(input) {
+    let out = [];
+    let loop = function(arr) {
+        return arr.map(function(v) {
+            return Array.isArray(v)? loop(v) : out.push(v);
+        });
+    }
+    loop(input);
+    return out;
+}
+```
+
+[Back to Question](#2.3)
+
+----
+
+<a name='a2.4'/>
+
+### 2.4 Reordering Objects in Array
+
+```javascript
+function sort(A, B) {
+	let result = [];
+	B.map((index, i) => {
+		result[index] = A[i];
+	})
+	return result;
+}
+```
+
+[Back to Question](#2.4)
 
 --------
 
 ## Credits
 
 - [Toptal](#https://www.toptal.com/javascript/interview-questions)
+- [Difference between `let` and `var`](#http://stackoverflow.com/questions/762011/whats-the-difference-between-using-let-and-var-to-declare-a-variable)
