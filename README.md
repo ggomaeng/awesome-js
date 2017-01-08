@@ -18,7 +18,8 @@
     - [2.1 - String Palindrome](#2.1)
     - [2.2 - Square Root](#2.2)
     - [2.3 - Flattening Array](#2.3) 
-    - [2.4 - Reordering Objects in Array](#2.4) 
+    - [2.4 - Reordering Objects in an Array](#2.4) 
+    - [2.5 - Replacing Substring](#2.5) 
 - [Answers](#answers)
 - [Credits](#credits)
 
@@ -539,7 +540,7 @@ output = [0, 1, 2, 3, 4, 5];
 
 <a name='2.4'/>
 
-#### 2.4 Reordering Objects in Array
+#### 2.4 Reordering Objects in an Array
 
 We have an array of objects A and an array of indexes B. Reorder objects in array A with given indexes in array B. Do not change array A's length. 
 
@@ -553,6 +554,26 @@ sort(A, B);
 ```
 
 [See Answer](#a2.4)
+
+----
+
+<a name='2.5'/>
+
+#### 2.5 Replacing Substring
+
+Given a string Sting="ABCSC" Check whether it contains a Substring="ABC"?
+
+1) If no , return "-1". 
+
+2) If yes , remove the substring from string and return "SC". 
+
+[See Answer](#a2.5)
+
+------
+
+
+
+
 
 ##Answers
 
@@ -1405,7 +1426,7 @@ function flatten(input) {
 
 <a name='a2.4'/>
 
-### 2.4 Reordering Objects in Array
+### 2.4 Reordering Objects in an Array
 
 ```javascript
 function sort(A, B) {
@@ -1418,6 +1439,20 @@ function sort(A, B) {
 ```
 
 [Back to Question](#2.4)
+
+------
+
+<a name='a2.5'/>
+
+### 2.5 Replacing Substring
+
+```javascript
+var string = "ABCSC"; 
+
+return ((string.indexOf("ABC") != -1) ? (string.replace(/ABC/gm,"")) : (-1));
+```
+
+[Back to Question](#2.5)
 
 --------
 
