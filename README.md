@@ -13,8 +13,10 @@
     - [1.8 - Comparison and Logical Operators](#1.8)
     - [1.9 - Objects](#1.9)
     - [1.10 - DOM](#1.10)
+    - [1.11 - Prototype](#1.11)
 - [Algorithms](#algorithms)
     - [2.1 - String Palindrome](#2.1)
+    - [2.2 - Square Root](#2.2) 
 - [Answers](#answers)
 - [Credits](#credits)
 
@@ -436,6 +438,16 @@ console.log(a[b]);
 
 ------
 
+<a name='1.9.2'/>
+
+#### 1.9.2
+
+Compare and contrast objects and hashtables in JavaScript.
+
+[See Answer](#a1.9.2)
+
+------
+
 <a name='1.10'/>
 
 ### 1.10 DOM (Document Object Model)
@@ -455,6 +467,22 @@ The arguments to the function should be:
 
 ----------
 
+<a name='1.11'/>
+
+### 1.11 Prototype
+
+<a name='1.11.1'/>
+
+#### 1.11
+
+Describe inheritance and the prototype chain in JavaScript. Give an example.
+
+[See Answer](#a1.11.1)
+
+--------
+
+
+
 
 
 
@@ -468,6 +496,16 @@ The arguments to the function should be:
 Write a simple function (less than 80 characters) that returns a boolean indicating whether or not a string is a [palindrome](http://www.palindromelist.net/).
 
 [See Answer](#a2.1)
+
+---------
+
+<a name='2.2'/>
+
+#### 2.2 Square Root
+
+Manually calculate the square root of a number with Javascript
+
+[See Answer](#a2.2)
 
 ---
 
@@ -1103,6 +1141,16 @@ The reason for this is as follows: When setting an object property, JavaScript w
 
 [Back to Question](#1.9.1)
 
+-----
+
+<a name='a1.9.2'/>
+
+#### 1.9.2
+
+This is somewhat of a trick question since, in JavaScript, objects essentially are hashtables; i.e., collections of name-value pairs. In these name-value pairs, a crucial point to be aware of is that the names (a.k.a., keys) are always strings.
+
+[Back to Question](#1.9.2)
+
 --------
 
 ### 1.10 DOM (Document Object Model)
@@ -1124,6 +1172,38 @@ function Traverse(p_element,p_callback) {
 ```
 
 [Back to Question](#1.10.1)
+
+-------
+
+### 1.11 Prototype
+
+<a name'a1.11.1'/>
+
+#### 1.11
+
+Although JavaScript is an object-oriented language, it is prototype-based and does not implement a traditional class-based inheritance system.
+
+In JavaScript, each object internally references another object, called its *prototype*. That prototype object, in turn, has a reference to its prototype object, and so on. At the end of this prototype chain is an object with null as its prototype. The prototype chain is the mechanism by which inheritance – *prototypal inheritance* to be precise – is achieved in JavaScript. In particular, when a reference is made to a property that an object does not itself contain, the prototype chain is traversed until the referenced property is found (or until the end of the chain is reached, in which case the property is undefined).
+
+Here’s a simple example:
+
+```javascript
+function Animal() { this.eatsVeggies = true; this.eatsMeat = false; }
+
+function Herbivore() {}
+Herbivore.prototype = new Animal();
+
+function Carnivore() { this.eatsMeat = true; }
+Carnivore.prototype = new Animal();
+
+var rabbit = new Herbivore();
+var bear = new Carnivore();
+
+console.log(rabbit.eatsMeat);   // logs "false"
+console.log(bear.eatsMeat);     // logs "true"
+```
+
+[Back to Question](#1.11.1)
 
 ---------
 
@@ -1152,7 +1232,35 @@ console.log(isPalindrome("A car, a man, a maraca"));  // logs 'true'
 
 ------
 
+<a name='a2.2'/>
 
+### 2.2 Square Root
+
+```javascript
+//@param number number to find the square root of
+//@param guess number of guesses
+function sqrt(number, guess) {
+    if (!guess) {
+        // Take an initial guess at the square root
+        guess = number / 2.0;
+    }
+    var d = number / guess;              // Divide our guess into the number
+    var new_guess = (d + guess) / 2.0;     // Use average of guess and d as our new guess
+    if (guess == new_guess) {          
+        // The new guess is the same as the old guess; further guesses
+        // can get no more accurate so we return this guess
+        return guess;
+    }
+    // Recursively solve for closer and closer approximations of the square root
+    return sqrt(number, new_guess);
+}
+```
+
+
+
+[Back to Question](#2.2)
+
+--------
 
 ## Credits
 
