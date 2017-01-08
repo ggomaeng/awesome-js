@@ -67,6 +67,16 @@ console.log( "A" - "B" + 2);
 
 [See Answer](#a1.1.3)
 
+------
+
+<a name='1.1.4'/>
+
+#### 1.1.4
+
+What's the difference between using “let” and “var” to declare a variable?
+
+[See Answer](#a1.1.4)
+
 ----
 
 <a name='1.2'/>
@@ -609,6 +619,85 @@ The fundamental issue here is that JavaScript (ECMAScript) is a loosely typed la
 **Example 6:** `"A" - "B" + 2` **Outputs:** `NaN` **Explanation:** As exlained in the previous example, `"A" - "B"` yields `NaN`. But any operator applied to NaN with any other numeric operand will still yield `NaN`.
 
 [Back to Question](#1.1.3)
+
+-------
+
+<a name='a1.1.4'/>
+
+#### 1.1.4
+
+The difference is scoping. `var` is scoped to the nearest function block and `let` is scoped to the nearest *enclosing* block (both are global if outside any block), which can be smaller than a function block.
+
+Also, variables declared with `let` are not accessible before they are declared in their enclosing block.
+
+### Global:
+
+They are very similar when used like this outside a function block.
+
+```javascript
+let me = 'go';  // globally scoped
+var i = 'able'; // globally scoped
+```
+
+However, global variables defined with `let` will not be added as properties on the global `window`object like those defined with `var`.
+
+```javascript
+console.log(window.me); // undefined
+console.log(window.i); // 'able'
+```
+
+### Function:
+
+They are identical when used like this in a function block.
+
+```javascript
+function ingWithinEstablishedParameters() {
+    let terOfRecommendation = 'awesome worker!'; //function block scoped
+    var sityCheerleading = 'go!'; //function block scoped
+}
+```
+
+### Block:
+
+Here is the difference. `let` is only visible in the `for()` loop and `var` is visible to the whole function.
+
+```javascript
+function allyIlliterate() {
+    //tuce is *not* visible out here
+
+    for( let tuce = 0; tuce < 5; tuce++ ) {
+        //tuce is only visible in here (and in the for() parentheses)
+        //and there is a separate tuce variable for each iteration of the loop
+    }
+
+    //tuce is *not* visible out here
+}
+
+function byE40() {
+    //nish *is* visible out here
+
+    for( var nish = 0; nish < 5; nish++ ) {
+        //nish is visible to the whole function
+    }
+
+    //nish *is* visible out here
+}
+```
+
+### Redeclaration:
+
+Assuming strict mode, `var` will let you re-declare the same variable in the same scope. On the other hand, `let` will not:
+
+```javascript
+'use strict';
+let me = 'foo';
+let me = 'bar'; // SyntaxError: Identifier 'me' has already been declared
+'use strict';
+var me = 'foo';
+var me = 'bar'; // No problem, `me` is replaced.
+```
+
+[Back to Question](#1.1.4)
 
 -------
 
@@ -1177,7 +1266,7 @@ function Traverse(p_element,p_callback) {
 
 ### 1.11 Prototype
 
-<a name'a1.11.1'/>
+<a name='a1.11.1'/>
 
 #### 1.11
 
