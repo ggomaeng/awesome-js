@@ -1,5 +1,11 @@
 # awesome-js
-🦄 A curated list of javascript fundamentals for preparing interviews.
+🦄 A curated list of javascript fundamentals and algorithms. Javascript is ❤️
+
+```javascript
+Maintained by: Sung Woo Park
+```
+
+
 
 ##Table of Contents
 - [Fundamentals](#fundamentals)
