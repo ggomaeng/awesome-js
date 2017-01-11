@@ -1635,7 +1635,7 @@ console.log(bear.eatsMeat);     // logs "true"
 
 -----
 
-<a name='a1.11.1'/>
+<a name='a1.11.2'/>
 
 #### 1.11.2
 
