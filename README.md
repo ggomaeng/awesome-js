@@ -20,6 +20,7 @@
     - [2.3 - Flattening Array](#2.3) 
     - [2.4 - Reordering Objects in an Array](#2.4) 
     - [2.5 - Replacing Substring](#2.5) 
+    - [2.6 - Move Zeroes](#2.6) 
 - [Answers](#answers)
 - [Credits](#credits)
 
@@ -571,7 +572,22 @@ Given a string Sting="ABCSC" Check whether it contains a Substring="ABC"?
 
 ------
 
+<a name='2.6'/>
 
+#### 2.6 Move Zeroes
+
+Given an array `nums`, write a function to move all `0`'s to the end of it while maintaining the relative order of the non-zero elements.
+
+For example, given `nums = [0, 1, 0, 3, 12]`, after calling your function, `nums` should be `[1, 3, 12, 0, 0]`.
+
+**Note**:
+
+1. You must do this **in-place** without making a copy of the array.
+2. Minimize the total number of operations.
+
+[See Answer](#a2.6)
+
+---------
 
 
 
@@ -1453,6 +1469,33 @@ return ((string.indexOf("ABC") != -1) ? (string.replace(/ABC/gm,"")) : (-1));
 ```
 
 [Back to Question](#2.5)
+
+-----
+
+<a name='a2.6'/>
+
+### 2.6 Move Zeroes
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var moveZeroes = function(nums) {
+    let j = 0;
+    nums.map((num, i) => {
+        if(num !== 0) { //if number is not 0
+          	//swap the num[i] and num[j]
+            let temp = nums[j];
+            nums[j] = nums[i];
+            nums[i] = temp;
+            j++;
+        }
+    })
+};
+```
+
+[Back to Question](#2.6)
 
 --------
 
