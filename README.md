@@ -118,6 +118,16 @@ What is asynchronous programming, and why is it important in JavaScript?
 
 [See Answer](#a1.0.9)
 
+------
+
+<a name='1.0.10'/>
+
+#### 1.0.10
+
+What is Javascript's hoisting?
+
+[See Answer](#a1.0.10)
+
 ---------
 
 <a name='1.1'/>
@@ -175,6 +185,16 @@ console.log( "A" - "B" + 2);
 What's the difference between using “let” and “var” to declare a variable?
 
 [See Answer](#a1.1.4)
+
+-----
+
+<a name='1.1.5'/>
+
+#### 1.1.5
+
+What's the difference between `null` and `undefined`?
+
+[See Answer](#a1.1.5)
 
 ----
 
@@ -858,6 +878,52 @@ This is important in JavaScript, because it is a very natural fit for user inter
 
 [Back to Question](#1.0.9)
 
+----
+
+<a name='a1.0.10'/>
+
+#### 1.0.10
+
+Hoisting is JavaScript's default behavior of moving declarations to the top. In JavaScript, a variable can be declared after it has been used. In other words; a variable can be used before it has been declared.
+
+**Example 1** gives the same result as **Example 2**:
+
+**Example 1:**
+
+```javascript
+x = 5; // Assign 5 to x
+
+elem = document.getElementById("demo"); // Find an element 
+elem.innerHTML = x;                     // Display x in the element
+
+var x; // Declare x
+```
+
+**Example2 :**
+
+```javascript
+var x; // Declare x
+x = 5; // Assign 5 to x
+
+elem = document.getElementById("demo"); // Find an element 
+elem.innerHTML = x;                     // Display x in the element
+```
+
+Don't get confused that **ONLY** the declaration is moved to the top. Value initialization is done on the same line.
+
+Thus `y` in this example is undefined:
+
+```javascript
+var x = 5; // Initialize x
+
+elem = document.getElementById("demo"); // Find an element 
+elem.innerHTML = x + " " + y;           // Display x and y
+
+var y = 7; // Initialize y
+```
+
+[Back to Question](#1.0.10)
+
 -----
 
 ### 1.1 typeof
@@ -1035,6 +1101,47 @@ var me = 'bar'; // No problem, `me` is replaced.
 ```
 
 [Back to Question](#1.1.4)
+
+-----
+
+<a name='a1.1.5'/>
+
+#### 1.1.5
+
+In JavaScript, `undefined` means a variable has been declared but has not yet been assigned a value, such as:
+
+```javascript
+var TestVar;
+ alert(TestVar); //shows undefined
+ alert(typeof TestVar); //shows undefined
+```
+
+`null` is an assignment value. It can be assigned to a variable as a representation of no value:
+
+```javascript
+ var TestVar = null;
+ alert(TestVar); //shows null
+ alert(typeof TestVar); //shows object
+```
+
+From the preceding examples, it is clear that `undefined` and `null` are two distinct types: `undefined` is a type itself (undefined) while `null` is an object.
+
+```javascript
+ null === undefined // false
+ null == undefined // true
+ null === null // true
+```
+
+and
+
+```javascript
+ null = 'value' // ReferenceError
+ undefined = 'value' // 'value'
+```
+
+[From StackOverflow](http://stackoverflow.com/questions/5076944/what-is-the-difference-between-null-and-undefined-in-javascript)
+
+[Back to Question](#1.1.5)
 
 -------
 
@@ -1795,3 +1902,4 @@ var moveZeroes = function(nums) {
 - [Toptal](https://www.toptal.com/javascript/interview-questions)
 - [Difference between `let` and `var`](http://stackoverflow.com/questions/762011/whats-the-difference-between-using-let-and-var-to-declare-a-variable)
 - [Medium—Eric Elliot](https://medium.com/javascript-scene/10-interview-questions-every-javascript-developer-should-know-6fa6bdf5ad95#.virt68v82)
+- [w3school](http://www.w3schools.com/)
