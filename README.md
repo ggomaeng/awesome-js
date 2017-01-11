@@ -3,6 +3,7 @@
 
 ##Table of Contents
 - [Fundamentals](#fundamentals)
+    - [1.0 - Javascript Principles](#1.0)
     - [1.1 - Typeof](#1.1)
     - [1.2 - Scope](#1.2)
     - [1.3 - Error Handling](#1.3)
@@ -25,6 +26,100 @@
 - [Credits](#credits)
 
 ##Fundamentals
+<a name='1.0'/>
+
+### 1.0 Javascript Principles
+
+<a name='1.0.1'/>
+
+#### 1.0.1
+
+Can you name two programming paradigms important for JavaScript app developers? 
+
+[See Answer](#a1.0.1)
+
+-------
+
+<a name='1.0.2'/>
+
+#### 1.0.2
+
+What is functional programming?
+
+[See Answer](#a1.0.2)
+
+-----
+
+<a name='1.0.3'/>
+
+#### 1.0.3
+
+What is the difference between classical inheritance and prototypal inheritance?
+
+[See Answer](#a1.0.3)
+
+----
+
+<a name='1.0.4'/>
+
+#### 1.0.4
+
+What are the pros and cons of functional programming vs object-oriented programming?
+
+[See Answer](#a1.0.4)
+
+------
+
+<a name='1.0.5'/>
+
+#### 1.0.5
+
+When is classical inheritance an appropriate choice?
+
+[See Answer](#a1.0.5)
+
+---
+
+<a name='1.0.6'/>
+
+#### 1.0.6
+
+What does “favor object composition over class inheritance” mean?
+
+[See Answer](#a1.0.6)
+
+----
+
+<a name='1.0.7'/>
+
+#### 1.0.7
+
+What are two-way data binding and one-way data flow, and how are they different?
+
+[See Answer](#a1.0.7)
+
+----
+
+<a name='1.0.8'/>
+
+#### 1.0.8
+
+What are the pros and cons of monolithic vs microservice architectures?
+
+[See Answer](#a1.0.8)
+
+-----
+
+<a name='1.0.9'/>
+
+#### 1.0.9
+
+What is asynchronous programming, and why is it important in JavaScript?
+
+[See Answer](#a1.0.9)
+
+---------
+
 <a name='1.1'/>
 
 ### 1.1 typeof  
@@ -487,7 +582,7 @@ The arguments to the function should be:
 
 <a name='1.11.1'/>
 
-#### 1.11
+#### 1.11.1
 
 Describe inheritance and the prototype chain in JavaScript. Give an example.
 
@@ -495,9 +590,15 @@ Describe inheritance and the prototype chain in JavaScript. Give an example.
 
 --------
 
+<a name='1.11.2'/>
 
+#### 1.11.2
 
+When is prototypal inheritance an appropriate choice?
 
+[See Answer](#a1.11.2)
+
+-----
 
 
 
@@ -592,6 +693,172 @@ For example, given `nums = [0, 1, 0, 3, 12]`, after calling your function, `nu
 
 
 ##Answers
+
+### 1.0 Javascript Principles
+
+<a name='a1.0.1'/>
+
+#### 1.0.1
+
+JavaScript is a multi-paradigm language, supporting **imperative/procedural** programming along with **OOP** (Object-Oriented Programming) and **functional programming**. JavaScript supports OOP with **prototypal inheritance**.
+
+Javascript is **Ojects Linking to Other Objects (*OLOO*)**.
+
+```javascript
+//imperative
+function double (arr) {
+  let results = []
+  for (let i = 0; i < arr.length; i++){
+    results.push(arr[i] * 2)
+  }
+  return results
+}
+
+//functional
+function double (arr) {
+  return arr.map((item) => item * 2)
+}
+
+//functional does not mutate any state, or information held in memory
+```
+
+[Back to Question](#1.0.1)
+
+--------
+
+<a name='a1.0.2'/>
+
+#### 1.0.2
+
+Functional programming produces programs by composing mathematical functions and avoids shared state & mutable data. **Pure functions**—doesn't mutate any state or data.
+
+[Back to Question](#1.0.2)
+
+---
+
+<a name='a1.0.3'/>
+
+#### 1.0.3
+
+**Class Inheritance: **instances inherit from classes (like a blueprint — a description of the class), and create sub-class relationships: hierarchical class taxonomies. Instances are typically instantiated via constructor functions with the *`new`* keyword. Class inheritance may or may not use the *`class`* keyword from ES6.
+
+**Prototypal Inheritance:** instances inherit directly from other objects. Instances are typically instantiated via factory functions or *`Object.create()`.* Instances may be composed from many different objects, allowing for easy selective inheritance.
+
+- **composition** - your object contains another object, called its prototype, and
+- **delegation** - when you access a property on your object, if it's not directly defined on it, javascript will search the prototype chain and delegate that behavior to the first object it finds that defines that property.
+
+[Back to Question](#1.0.3)
+
+------
+
+<a name='a1.0.4'/>
+
+#### 1.0.4
+
+**OOP Pros: **It’s easy to understand the basic concept of objects and easy to interpret the meaning of method calls. OOP tends to use an imperative style rather than a declarative style, which reads like a straight-forward set of instructions for the computer to follow.
+
+**OOP Cons:** OOP Typically depends on shared state. Objects and behaviors are typically tacked together on the same entity, which may be accessed at random by any number of functions with non-deterministic order, which may lead to undesirable behavior such as race conditions.
+
+**FP Pros:** Using the functional paradigm, programmers avoid any shared state or side-effects, which eliminates bugs caused by multiple functions competing for the same resources. With features such as the availability of point-free style (aka tacit programming), functions tend to be radically simplified and easily recomposed for more generally reusable code compared to OOP.
+
+**FP Cons:** Over exploitation of FP features such as point-free style and large compositions can potentially reduce readability because the resulting code is often more abstractly specified, more terse, and less concrete.
+
+[Back to Question](#1.0.4)
+
+------
+
+<a name='a1.0.5'/>
+
+#### 1.0.5
+
+This is a trick question. The answer is never. I’ve been issuing this challenge for years, and the only answers I’ve ever heard fall into one of several [common misconceptions](https://medium.com/javascript-scene/common-misconceptions-about-inheritance-in-javascript-d5d9bab29b0a). More frequently, the challenge is met with silence.
+
+[Back to Question](#1.0.5)
+
+-----
+
+<a name='a1.0.6'/>
+
+#### 1.0.6
+
+This is a quote from [“Design Patterns: Elements of Reusable Object-Oriented Software”](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612). It means that code reuse should be achieved by assembling smaller units of functionality into new objects instead of inheriting from classes and creating object taxonomies.
+
+In other words, use **can-do, has-a,** or **uses-a** relationships instead of **is-a** relationships.
+
+[Back to Question](#1.0.6)
+
+------
+
+<a name='a1.0.7'/>
+
+#### 1.0.7
+
+Two way data binding means that UI fields are bound to model data dynamically such that when a UI field changes, the model data changes with it and vice-versa.
+
+One way data flow means that the model is the single source of truth. Changes in the UI trigger messages that signal user intent to the model (or “store” in React). Only the model has the access to change the app’s state. The effect is that data always flows in a single direction, which makes it easier to understand.
+
+One way data flows are deterministic, whereas two-way binding can cause side-effects which are harder to follow and understand.
+
+**Good to hear:**
+
+- React is the new canonical example of one-way data flow, so mentions of React are a good signal. Cycle.js is another popular implementation of uni-directional data flow.
+- Angular is a popular framework which uses two-way binding.
+
+[Back to Question](#1.0.7)
+
+-------
+
+<a name='a1.0.8'/>
+
+#### 1.0.8
+
+A monolithic architecture means that your app is written as one cohesive unit of code whose components are designed to work together, sharing the same memory space and resources.
+
+A microservice architecture means that your app is made up of lots of smaller, independent applications capable of running in their own memory space and scaling independently from each other across potentially many separate machines.
+
+**Monolithic Pros: **The major advantage of the monolithic architecture is that most apps typically have a large number of cross-cutting concerns, such as logging, rate limiting, and security features such audit trails and DOS protection.
+
+When everything is running through the same app, it’s easy to hook up components to those cross-cutting concerns.
+
+There can also be performance advantages, since shared-memory access is faster than inter-process communication (IPC).
+
+**Monolithic cons:** Monolithic app services tend to get tightly coupled and entangled as the application evolves, making it difficult to isolate services for purposes such as independent scaling or code maintainability.
+
+Monolithic architectures are also much harder to understand, because there may be dependencies, side-effects, and magic which are not obvious when you’re looking at a particular service or controller.
+
+**Microservice pros:** Microservice architectures are typically better organized, since each microservice has a very specific job, and is not concerned with the jobs of other components. Decoupled services are also easier to recompose and reconfigure to serve the purposes of different apps (for example, serving both the web clients and public API).
+
+They can also have performance advantages depending on how they’re organized because it’s possible to isolate hot services and scale them independent of the rest of the app.
+
+**Microservice cons:** As you’re building a new microservice architecture, you’re likely to discover lots of cross-cutting concerns that you did not anticipate at design time. A monolithic app could establish shared magic helpers or middleware to handle such cross-cutting concerns without much effort.
+
+In a microservice architecture, you’ll either need to incur the overhead of separate modules for each cross-cutting concern, or encapsulate cross-cutting concerns in another service layer that all traffic gets routed through.
+
+Eventually, even monolthic architectures tend to route traffic through an outer service layer for cross-cutting concerns, but with a monolithic architecture, it’s possible to delay the cost of that work until the project is much more mature.
+
+Microservices are frequently deployed on their own virtual machines or containers, causing a proliferation of VM wrangling work. These tasks are frequently automated with container fleet management tools.
+
+[Back to Question](#1.0.8)
+
+-----
+
+<a name='a1.0.9'/>
+
+#### 1.0.9
+
+Synchronous programming means that, barring conditionals and function calls, code is executed sequentially from top-to-bottom, blocking on long-running tasks such as network requests and disk I/O.
+
+Asynchronous programming means that the engine runs in an event loop. When a blocking operation is needed, the request is started, and the code keeps running without blocking for the result. When the response is ready, an interrupt is fired, which causes an event handler to be run, where the control flow continues. In this way, a single program thread can handle many concurrent operations.
+
+**User interfaces are asynchronous by nature,** and spend most of their time waiting for user input to interrupt the event loop and trigger event handlers.
+
+Node is asynchronous by default, meaning that the server works in much the same way, waiting in a loop for a network request, and accepting more incoming requests while the first one is being handled.
+
+This is important in JavaScript, because it is a very natural fit for user interface code, and very beneficial to performance on the server.
+
+[Back to Question](#1.0.9)
+
+-----
 
 ### 1.1 typeof
 
@@ -700,7 +967,7 @@ The difference is scoping. `var` is scoped to the nearest function block and 
 
 Also, variables declared with `let` are not accessible before they are declared in their enclosing block.
 
-### Global:
+##### Global:
 
 They are very similar when used like this outside a function block.
 
@@ -716,7 +983,7 @@ console.log(window.me); // undefined
 console.log(window.i); // 'able'
 ```
 
-### Function:
+##### Function:
 
 They are identical when used like this in a function block.
 
@@ -727,7 +994,7 @@ function ingWithinEstablishedParameters() {
 }
 ```
 
-### Block:
+##### Block:
 
 Here is the difference. `let` is only visible in the `for()` loop and `var` is visible to the whole function.
 
@@ -1338,9 +1605,11 @@ function Traverse(p_element,p_callback) {
 
 <a name='a1.11.1'/>
 
-#### 1.11
+#### 1.11.1
 
-Although JavaScript is an object-oriented language, it is prototype-based and does not implement a traditional class-based inheritance system.
+Although JavaScript is an object-oriented language, it is prototype-based and does not implement a traditional class-based inheritance system. 
+
+**All JavaScript objects inherit the properties and methods from their prototype.**
 
 In JavaScript, each object internally references another object, called its *prototype*. That prototype object, in turn, has a reference to its prototype object, and so on. At the end of this prototype chain is an object with null as its prototype. The prototype chain is the mechanism by which inheritance – *prototypal inheritance* to be precise – is achieved in JavaScript. In particular, when a reference is made to a property that an object does not itself contain, the prototype chain is traversed until the referenced property is found (or until the end of the chain is reached, in which case the property is undefined).
 
@@ -1363,6 +1632,28 @@ console.log(bear.eatsMeat);     // logs "true"
 ```
 
 [Back to Question](#1.11.1)
+
+-----
+
+<a name='a1.11.1'/>
+
+#### 1.11.2
+
+There is more than one type of prototypal inheritance:
+
+- **Delegation** (i.e., the prototype chain).
+
+- **Concatenative** (i.e. mixins, *`Object.assign()`*).
+
+  - Concatenative inheritance is the process of copying the properties from one object to another, without retaining a reference between the two objects. It relies on JavaScript’s dynamic object extension feature.
+
+    Cloning is a great way to store default state for objects: This process is commonly achieved using *`Object.assign()`.* Prior to ES6, it was common to use similar *`.extend()`* methods from Lodash, Underscore, or jQuery.
+
+- **Functional** (Not to be confused with functional programming. A function used to create a closure for private state/encapsulation).
+
+Each type of prototypal inheritance has its own set of use-cases, but all of them are equally useful in their ability to enable **composition,** which creates **has-a **or** uses-a** or **can-do** relationships as opposed to the **is-a** relationship created with class inheritance.
+
+[Back to Question](#1.11.2)
 
 ---------
 
@@ -1501,5 +1792,6 @@ var moveZeroes = function(nums) {
 
 ## Credits
 
-- [Toptal](#https://www.toptal.com/javascript/interview-questions)
-- [Difference between `let` and `var`](#http://stackoverflow.com/questions/762011/whats-the-difference-between-using-let-and-var-to-declare-a-variable)
+- [Toptal](https://www.toptal.com/javascript/interview-questions)
+- [Difference between `let` and `var`](http://stackoverflow.com/questions/762011/whats-the-difference-between-using-let-and-var-to-declare-a-variable)
+- [Medium—Eric Elliot](https://medium.com/javascript-scene/10-interview-questions-every-javascript-developer-should-know-6fa6bdf5ad95#.virt68v82)
