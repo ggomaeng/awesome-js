@@ -638,7 +638,7 @@ Write a simple function (less than 80 characters) that returns a boolean indicat
 
 #### 2.2 Square Root
 
-Manually calculate the square root of a number with Javascript
+Manually calculate the square root of a number with Javascript.
 
 [See Answer](#a2.2)
 
@@ -750,7 +750,7 @@ function double (arr) {
 
 #### 1.0.2
 
-Functional programming produces programs by composing mathematical functions and avoids shared state & mutable data. **Pure functions**—doesn't mutate any state or data.
+Functional programming produces programs by composing mathematical functions and avoids shared state & mutable data. **Pure functions** don't mutate any state or data.
 
 [Back to Question](#1.0.2)
 
