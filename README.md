@@ -134,6 +134,16 @@ What is Javascript's hoisting?
 
 [See Answer](#a1.0.10)
 
+---
+
+<a name='1.0.11'/>
+
+#### 1.0.11
+
+What Is AMD, CommonJS, and UMD?
+
+[See Answer](#a1.0.11)
+
 ---------
 
 <a name='1.1'/>
@@ -450,6 +460,16 @@ In what order will the numbers 1-4 be logged to the console when the code below 
 
 [See Answer](#a1.5.1)
 
+---------
+
+<a name='1.5.2'/>
+
+#### 1.5.2
+
+What is Javascript's Event Bubbling and Capturing?
+
+[See Answer](#a1.5.2)
+
 -----
 
 <a name='1.6'/>
@@ -728,7 +748,7 @@ For example, given `nums = [0, 1, 0, 3, 12]`, after calling your function, `nu
 
 JavaScript is a multi-paradigm language, supporting **imperative/procedural** programming along with **OOP** (Object-Oriented Programming) and **functional programming**. JavaScript supports OOP with **prototypal inheritance**.
 
-Javascript is **Ojects Linking to Other Objects (*OLOO*)**.
+Javascript is **Objects Linking to Other Objects (*OLOO*)**.
 
 ```javascript
 //imperative
@@ -929,6 +949,77 @@ var y = 7; // Initialize y
 ```
 
 [Back to Question](#1.0.10)
+
+----
+
+<a name='a1.0.11'/>
+
+#### 1.0.11
+
+Over the years there’s been a steadily increasing ecosystem of JavaScript components to choose from. The sheer amount of choices is fantastic, but this also infamously presents a difficulty when components are mixed-and-matched. And it doesn’t take too long for budding developers to find out that not all components are built to play nicely together.
+
+To address these issues, the competing module specs AMD and CommonJS have appeared on the scene, allowing developers to write their code in an agreed-upon sandboxed and modularized way, so as not to “pollute the ecosystem”
+
+**Asynchronous Module Definition (AMD)** has gained traction on the frontend, with RequireJS being the most popular implementation.
+
+Here’s module `foo` with a single dependency on `jquery`:
+
+```javascript
+//    filename: foo.js
+define(['jquery'], function ($) {
+    //    methods
+    function myFunc(){};
+
+    //    exposed public methods
+    return myFunc;
+});
+```
+
+**CommonJS** is a style you may be familiar with if you’re written anything in Node (which uses a slight variant). It’s also been gaining traction on the frontend with Browserify.
+
+Using the same format as before, here’s what our `foo` module looks like in CommonJS:
+
+```javascript
+//    filename: foo.js
+
+//    dependencies
+var $ = require('jquery');
+
+//    methods
+function myFunc(){};
+
+//    exposed public method (single)
+module.exports = myFunc;
+```
+
+Since CommonJS and AMD styles have both been equally popular, it seems there’s yet no consensus. This has brought about the push for a “universal” pattern that supports both styles, which brings us to none other than the **Universal Module Definition.**
+
+The pattern is admittedly ugly, but is both AMD and CommonJS compatible, as well as supporting the old-style “global” variable definition:
+
+```javascript
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD
+        define(['jquery'], factory);
+    } else if (typeof exports === 'object') {
+        // Node, CommonJS-like
+        module.exports = factory(require('jquery'));
+    } else {
+        // Browser globals (root is window)
+        root.returnExports = factory(root.jQuery);
+    }
+}(this, function ($) {
+    //    methods
+    function myFunc(){};
+
+    //    exposed public method
+    return myFunc;
+}));
+```
+
+[More Information](http://davidbcalhoun.com/2014/what-is-amd-commonjs-and-umd/)
+
+[Back to Question](#1.0.11)
 
 -----
 
@@ -1521,6 +1612,52 @@ Similarly, `setTimeout()` also puts execution of its referenced function into 
 When a value of zero is passed as the second argument to `setTimeout()`, it attempts to execute the specified function “as soon as possible”. Specifically, execution of the function is placed on the event queue to occur on the next timer tick. Note, though, that this is *not* immediate; the function is not executed until the next tick. That’s why in the above example, the call to `console.log(4)` occurs before the call to `console.log(3)` (since the call to `console.log(3)` is invoked via setTimeout, so it is slightly delayed).
 
 [Back to Question](#1.5.1)
+
+------
+
+<a name='a1.5.2'/>
+
+#### 1.5.2
+
+DOM elements can be nested inside each other. And somehow, the handler of the parent works even if you click on it’s child.
+
+The reason is *event bubbling*.
+
+For example, the following `DIV` handler runs even if you click a nested tag like `EM` or `CODE`:
+
+```html
+<div onclick="alert('Div handler worked!')">
+  <em>Click here triggers on nested <code>EM</code>, not on <code>DIV</code></em>
+</div>
+```
+
+##### **Bubbling**
+
+The main principle of bubbling states:
+**After an event triggers on the deepest possible element, it then triggers on parents in nesting order.**
+
+##### Stopping the bubbling
+
+The bubbling goes right to the top. When an event occurs on an element - it will bubble up to `<HTML>`, triggering handlers on it’s way.
+
+But a handler may decide that event is fully processed and stop the bubbling.
+
+- For W3C-compliant browsers: `event.stopPropagation()`
+- For IE<9: `event.cancelBubble = true`
+
+##### Capturing
+
+In all browsers, except IE<9, there are two stages of event processing.
+
+The event first goes down - that’s called *capturing*, and then *bubbles* up. This behavior is standartized in W3C specification.
+
+##### Summary
+
+- Events first are *captured* down to deepest target, then *bubble* up. In IE<9 they only bubble.
+- All handlers work on *bubbling* stage excepts `addEventListener` with last argument `true`, which is the only way to catch the event on capturing stage.
+- Bubbling/capturing can be stopped by `event.cancelBubble=true` (IE) or `event.stopPropagation()` for other browsers.
+
+[Back to Question](#1.5.2)
 
 ------
 
