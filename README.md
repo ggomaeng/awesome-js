@@ -29,6 +29,7 @@ Maintained by: Sung Woo Park
     - [2.5 - Replacing Substring](#2.5) 
     - [2.6 - Move Zeroes](#2.6) 
 - [Answers](#answers)
+- [Reference Books](#reference-books)
 - [Credits](#credits)
 
 ##Fundamentals
@@ -2505,6 +2506,11 @@ var moveZeroes = function(nums) {
 [Back to Question](#2.6)
 
 --------
+
+## Reference Books
+
+- [JavaScript: The Good Parts](http://shop.oreilly.com/product/9780596517748.do)
+- [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS)
 
 ## Credits
 
