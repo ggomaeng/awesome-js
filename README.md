@@ -535,6 +535,26 @@ Explain your answer.
 
 [See Answer](#a1.6.2)
 
+-----
+
+<a name='1.6.3'/>
+
+#### 1.6.3
+
+Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
+
+[See Answer](#a1.6.3)
+
+----
+
+<a name='1.6.4'/>
+
+#### 1.6.4
+
+What's the difference between `.call` and `.apply`
+
+[See Answer](#a1.6.4)
+
 ----
 
 <a name='1.7'/>
@@ -630,6 +650,16 @@ console.log(a[b]);
 Compare and contrast objects and hashtables in JavaScript.
 
 [See Answer](#a1.9.2)
+
+-----
+
+<a name='1.9.3'/>
+
+#### 1.9.3
+
+What's the difference between host objects and native objects?
+
+[See Answer](#a1.9.3)
 
 ------
 
@@ -1836,6 +1866,66 @@ f(10): returns 10 * f(9), which is 3628800
 
 [Back to Question](#1.6.2)
 
+----
+
+<a name='a1.6.3'/>
+
+#### 1.6.3
+
+1. **function Person() {} **
+
+Declares a function (but does not execute it).
+It will usually have some code between the curly brackets.
+
+2. **var person = Person()**
+
+Declares a variable (person), invokes a function (Person) and sets the value of person to the return of the function.
+
+3. **var person = new Person()**
+
+Creates a new instance of an object based on the Person function. So the variable (person) is now an **Object**, not just a string or a number.
+
+[Back to Question](#1.6.3)
+
+------
+
+<a name='a1.6.4'/>
+
+#### 1.6.4
+
+The difference is that `apply` lets you invoke the function with `arguments` as an array; `call`requires the parameters be listed explicitly. A useful mnemonic is "A for array and C for comma."
+
+See MDN's documentation on [apply](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/apply) and [call](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/call).
+
+Pseudo syntax:
+
+`theFunction.apply(valueForThis, arrayOfArgs)`
+
+`theFunction.call(valueForThis, arg1, arg2, ...)`
+
+There is also, as of ES6, the possibility to [`spread`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator) the array for use with the `call` function, you can see the compatibilities [here](http://kangax.github.io/compat-table/es6/).
+
+Sample code:
+
+```javascript
+function theFunction(name, profession) {
+    console.log("My name is " + name + " and I am a " + profession + ".");
+}
+theFunction("John", "fireman");
+theFunction.apply(undefined, ["Susan", "school teacher"]);
+theFunction.call(undefined, "Claude", "mathematician");
+theFunction.call(undefined, ...["Matthew", "physicist"]); // used with the spread operator
+
+// Output: 
+
+// My name is John and I am a fireman.
+// My name is Susan and I am a school teacher.
+// My name is Claude and I am a mathematician.
+// My name is Matthew and I am a physicist.
+```
+
+[Back to Question](#1.6.4)
+
 -----
 
 ### 1.7 Reference
@@ -1932,6 +2022,42 @@ The reason for this is as follows: When setting an object property, JavaScript w
 This is somewhat of a trick question since, in JavaScript, objects essentially are hashtables; i.e., collections of name-value pairs. In these name-value pairs, a crucial point to be aware of is that the names (a.k.a., keys) are always strings.
 
 [Back to Question](#1.9.2)
+
+------
+
+<a name='a1.9.3'/>
+
+#### 1.9.3
+
+Both terms are defined in the ECMAScript specfication:
+
+##### native object
+
+object in an ECMAScript implementation whose semantics are fully defined by this specification rather than by the host environment.
+
+NOTE Standard native objects are defined in this specification. Some native objects are built-in; others may be constructed during the course of execution of an ECMAScript program.
+
+Source: [http://es5.github.com/#x4.3.6](http://es5.github.com/#x4.3.6)
+
+##### host object
+
+object supplied by the host environment to complete the execution environment of ECMAScript.
+
+**NOTE** Any object that is not native is a host object.
+
+Source: [http://es5.github.com/#x4.3.8](http://es5.github.com/#x4.3.8)
+
+
+
+**uilt-in objects**: `String`, `Math`, `RegExp`, `Object`, `Function` etc. - core predefined objects always available in JavaScript. Defined in the ECMAScript spec.
+
+**Host objects**: objects like `window`, `XmlHttpRequest`, DOM nodes and so on, which is provided by the browser environment. They are distinct from the built-in objects because not all environment will have the same host objects. If JavaScript runs outside of the browser, for example as server side scripting language like in Node.js, different host objects will be available.
+
+**User objects**: objects defined in JavaScript code. So 'Bird' in your example would be a user object.
+
+The JavaScript spec groups built-in objects and user objects together as *native objects*. This is an unorthodox use of the term "native", since user objects are obviously implemented in JavaScript while the built-ins is most likely implemented in a different language under the hood, just as the host objects would be. But from the perspective of the JavaScript spec, both builtins and user objects are native to JavaScript because they are defined in the JavaScript spec, while host objects are not.
+
+[Back to Question](#1.9.3)
 
 --------
 
