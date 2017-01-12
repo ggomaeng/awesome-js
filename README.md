@@ -144,6 +144,26 @@ What Is AMD, CommonJS, and UMD?
 
 [See Answer](#a1.0.11)
 
+-----
+
+<a name='1.0.12'/>
+
+#### 1.0.12
+
+What is IIFE, or Immediately-Invoked Function Expression?
+
+[See Answer](#a1.0.12)
+
+------
+
+<a name='1.0.13'/>
+
+#### 1.0.13
+
+Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?
+
+[See Answer](#a1.0.13)
+
 ---------
 
 <a name='1.1'/>
@@ -345,6 +365,16 @@ console.log(hero.getSecretIdentity());
 What is the issue with this code and how can it be fixed.
 
 [See Answer](#a1.2.7)
+
+---
+
+<a name='1.2.8'/>
+
+#### 1.2.8
+
+How and why would you use closure?
+
+[See Answer](#a1.2.8)
 
 -----
 
@@ -1021,6 +1051,52 @@ The pattern is admittedly ugly, but is both AMD and CommonJS compatible, as well
 
 [Back to Question](#1.0.11)
 
+-------
+
+<a name='a1.0.12'/>
+
+#### 1.0.12
+
+IIFE is a function that executes immediately after it’s created.
+
+It has nothing to do with any event-handler for any events (such as `document.onload`).
+The first pair of parentheses `(function(){...})` turns the code within (in this case, a function) into an expression, and the second pair of parentheses `(function(){...})()` calls the function that results from that evaluated expression.
+
+This pattern is often used when trying to avoid polluting the global namespace, because all the variables used inside the IIFE (like in any other *normal* function) are not visible outside its scope.
+This is why, maybe, you confused this construction with an event-handler for `window.onload`, because it’s often used as this:
+
+```javascript
+(function(){
+    // all your code here
+    var foo = function() {};
+    window.onload = foo;
+    // ...
+})();
+// foo is unreachable here (it’s undefined)
+```
+
+The function is executed right after it's created, not after it is parsed. The entire script block is parsed before any code in it is executed. Also, parsing code doesn't automatically mean that it's executed, if for example the IIFE is inside a function then it won't be executed until the function is called.
+
+[Back to Question](#1.0.12)
+
+------
+
+<a name='a1.0.13'/>
+
+#### 1.0.13
+
+The function is missing the first pair of parantheses that turns the code within into an expression. 
+
+```javascript
+//wrong
+function foo(){ }();
+
+//correct
+(function foo(){})();
+```
+
+[Back to Question](#1.0.13)
+
 -----
 
 ### 1.1 typeof
@@ -1184,7 +1260,7 @@ function byE40() {
 }
 ```
 
-### Redeclaration:
+##### Redeclaration:
 
 Assuming strict mode, `var` will let you re-declare the same variable in the same scope. On the other hand, `let` will not:
 
@@ -1428,6 +1504,36 @@ var stoleSecretIdentity = hero.getSecretIdentity.bind(hero);
 ```
 
 [Back to Question](#1.2.7)
+
+----
+
+<a name='a1.2.8'/>
+
+#### 1.2.8
+
+1. Passing parameterised behaviour into an algorithm (classic higher-order programming)
+2. Simulating object oriented programming
+3. Implementing exotic flow control, such as jQuery's Event handling and AJAX APIs.
+
+One example of closure that enforces public/private methods:
+
+```javascript
+a = (function () {
+    var privatefunction = function () {
+        alert('hello');
+    }
+
+    return {
+        publicfunction : function () {
+            privatefunction();
+        }
+    }
+})();
+```
+
+As you can see there, `a` is now an object, with a method `publicfunction` ( `a.publicfunction()` ) which calls `privatefunction`, which only exists inside the closure. You can **NOT** call `privatefunction` directly (i.e. `a.privatefunction()` ), just `publicfunction()`.
+
+[Back to Question](#1.2.8)
 
 ----------
 
