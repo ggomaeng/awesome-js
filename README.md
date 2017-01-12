@@ -502,6 +502,8 @@ console.log(0.1 + 0.2 == 0.3);
 
 -----
 
+<a name='1.4.2'/>
+
 #### 1.4.2
 
 Discuss possible ways to write a function `isInteger(x)` that determines if `x` is an integer.
