@@ -164,6 +164,46 @@ Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What
 
 [See Answer](#a1.0.13)
 
+----
+
+<a name='1.0.14'/>
+
+#### 1.0.14
+
+What's the difference between feature detection, feature inference, and using the UA string?
+
+[See Answer](#a1.0.14)
+
+------
+
+<a name='1.0.15'/>
+
+#### 1.0.15
+
+Explain AJAX in as much detail as possible-JavaScript. What are some advantages and disadvantages to using AJAX?
+
+[See Answer](#a1.0.15)
+
+-----
+
+<a name='1.0.16'/>
+
+#### 1.0.16
+
+What's the difference between an "attribute" and a "property"?
+
+[See Answer](#a1.0.16)
+
+-----
+
+<a name='1.0.17'/>
+
+#### 1.0.17
+
+Why is extending built-in JavaScript objects not a good idea?
+
+[See Answer](#a1.0.17)
+
 ---------
 
 <a name='1.1'/>
@@ -551,9 +591,19 @@ Difference between: `function Person(){}`, `var person = Person()`, and `var 
 
 #### 1.6.4
 
-What's the difference between `.call` and `.apply`
+What's the difference between `.call` and `.apply`?
 
 [See Answer](#a1.6.4)
+
+---
+
+<a name='1.6.5'/>
+
+#### 1.6.5
+
+When would you use `document.write()`?
+
+[See Answer](#a1.6.5)
 
 ----
 
@@ -703,6 +753,16 @@ Describe inheritance and the prototype chain in JavaScript. Give an example.
 When is prototypal inheritance an appropriate choice?
 
 [See Answer](#a1.11.2)
+
+-----
+
+<a name='1.11.3'/>
+
+#### 1.11.3
+
+Explain `Function.prototype.bind`
+
+[See Answer](#a1.11.3)
 
 -----
 
@@ -1126,6 +1186,114 @@ function foo(){ }();
 ```
 
 [Back to Question](#1.0.13)
+
+---
+
+<a name='a1.0.14'/>
+
+#### 1.0.14
+
+[Feature detection](http://learn.jquery.com/code-organization/feature-browser-detection/) checks a feature for existence, e.g.:
+
+```javascript
+if (window.XMLHttpRequest) {
+    new XMLHttpRequest();
+}
+```
+
+Feature [inference](http://my.safaribooksonline.com/book/programming/javascript/9781449328092/12dot-browser-detection/id2784208) checks for a feature just like feature detection, but uses another function because it *assumes* it will also exist, e.g.:
+
+```javascript
+if (document.getElementsByTagName) {
+    element = document.getElementById(id);
+}
+```
+
+Checking the [UA string](https://developer.mozilla.org/en-US/docs/Browser_detection_using_the_user_agent) is an old practice and should not be used anymore. You keep changing the UA checks and never benefit from newly implemented features, e.g.:
+
+```javascript
+if (navigator.userAgent.indexOf("MSIE 7") > -1){
+    //do something
+}
+```
+
+[Back to Question](#1.0.14)
+
+-----
+
+<a name='a1.0.15'/>
+
+#### 1.0.15
+
+Simply put, AJAX is the use of JavaScript to send and receive using HTTP without reloading the page. **AJAX** is an acronym for **asynchronous JavaScript and XML**, and is used as a technique for creating client-side asynchronous web applications. AJAX is considered a group of technologies. HTML and CSS can be used in combination to mark up and style information. JavaScript and the XMLHttpRequest object provide the method for exchanging data asynchronously between the browser and the server.
+
+##### How does AJAX work?
+
+AJAX, sends and retrieves data from a server asynchronously. This enables the web application to continue running and dynamically display. It allows the user to interact with the information presented on the page, avoiding full page reloads.
+
+The image below shows the process the execution of AJAX.
+
+1. A user interaction in the browser triggers the event, such as a button click
+2. The AJAX call fires. This creates and AJAX request, browsers use the XMLHttpRequest object. When the server responds to the browser’s request, the same XMLHttpRequest object will process the result.
+3. The server-side script receives the input from JavaScript, and processes the data.
+4. After the data is processed, the script sends the data back to the original client-side page that made the request via XML
+5. Once the data is received, a second JavaScript callback function, is called this function captures the data, and updates the web page accordingly.
+
+**Advantages**
+
+AJAX provides more efficient and smoother running applications, which gives users better interactive experiences.
+
+The best use of AJAX is where it is used to send small payloads. Here is a simple example.
+
+I load a page that contains information about stock. It has graphs, charts, company information and it also displays the share-price. Every 30 seconds, I make an AJAX request that gets the updated share-price and changes it on the page.
+
+Without AJAX, I might decide to refresh the entire page every 30 seconds, but with AJAX, I can just make a lightweight request to get the tiny bit of information I need.
+
+
+
+**Disadvantages**
+
+Using AJAX to submit forms isn't always the best bet. Asides from not really giving you a clear advantage over posting the form normally, you break conventions such as browser history (although some browsers now include JavaScript "states" as pages in the history).
+
+When using AJAX, you need to handle the task of telling the user if something has gone wrong. You can do this with jQuery by specifying what should happen on error, but many people forget to do this and the end user is blissfully unaware of any problem.
+
+Other issues to watch out for are any JavaScript errors that may prevent your events from firing - or if JavaScript is disabled, in either case ensuring that the form can submit normally before you add the AJAX code is the safest option.
+
+[More Information](http://stackoverflow.com/questions/2583223/what-are-the-advantages-and-disadvantages-of-making-ajax-calls-using-jquery)
+
+[Back to Question](#1.0.15)
+
+------
+
+<a name='a1.0.16'/>
+
+#### 1.0.16
+
+Attributes are defined by HTML. Properties are defined by DOM.
+
+Some HTML attributes have 1:1 mapping onto properties. `id` is one example of such.
+
+Some do not (e.g. the `value` attribute specifies the initial value of an input, but the `value`property specifies the *current* value).
+
+[Back to Question](#1.0.16)
+
+---
+
+<a name='a1.0.17'/>
+
+#### 1.0.17
+
+When you extend an object, you change its behaviour.
+
+Changing the behaviour of an object that will only be used by your own code is fine. But when you change the behaviour of something that is also used by other code there is a risk you will break that other code.
+
+When it comes adding methods to the object and array classes in javascript, the risk of breaking something is very high, due to how javascript works. Long years of experience have taught me that this kind of stuff causes all kinds of terrible bugs in javascript.
+
+If you need custom behaviour, it is far better to define your own class (perhaps a subclass) instead of changing a native one. That way you will not break anything at all.
+
+The ability to change how a class works without subclassing it is an important feature of any good programming language, but it is one that must be used rarely and with caution.
+
+[Back to Question](#1.0.17)
 
 -----
 
@@ -1926,6 +2094,16 @@ theFunction.call(undefined, ...["Matthew", "physicist"]); // used with the sprea
 
 [Back to Question](#1.6.4)
 
+----
+
+<a name='a1.6.5'/>
+
+#### 1.6.5
+
+A traditional script tag will block the page while it is loading and executing. A script loaded with document.write will work asynchronously. That's why you see this on ads or analytics, as such scripts don't influence the page content directly.
+
+[Back to Question](#1.6.5)
+
 -----
 
 ### 1.7 Reference
@@ -2137,6 +2315,62 @@ Each type of prototypal inheritance has its own set of use-cases, but all of the
 
 [Back to Question](#1.11.2)
 
+----
+
+<a name='a1.11.3'/>
+
+#### 1.11.3
+
+Bind creates a new function that will have `this` set to the first parameter passed to `bind()`.
+
+Here's an example that shows how to use `bind` to pass a member method around that has the correct `this`:
+
+```javascript
+var Button = function(content) { 
+  this.content = content;
+};
+Button.prototype.click = function() {
+  console.log(this.content + ' clicked');
+}
+
+var myButton = new Button('OK');
+myButton.click();
+
+var looseClick = myButton.click;
+looseClick(); // not bound, 'this' is not myButton - it is the global object
+
+var boundClick = myButton.click.bind(myButton);
+boundClick(); // bound, 'this' is myButton	
+```
+
+Which prints out:
+
+```javascript
+OK clicked
+undefined clicked
+OK clicked
+```
+
+You can also add extra parameters after the 1st (`this`) parameter and `bind` will pass in those values to the original function. Any additional parameters you later pass to the bound function will be passed in after the bound parameters:
+
+```javascript
+// Example showing binding some parameters
+var sum = function(a, b) {
+  return a + b;
+};
+
+var add5 = sum.bind(null, 5);
+console.log(add5(10));
+```
+
+Which prints out:
+
+```javascript
+15
+```
+
+[Back to Question](#1.11.3)
+
 ---------
 
 <a name='a2.1'/>
@@ -2278,3 +2512,4 @@ var moveZeroes = function(nums) {
 - [Difference between `let` and `var`](http://stackoverflow.com/questions/762011/whats-the-difference-between-using-let-and-var-to-declare-a-variable)
 - [Medium—Eric Elliot](https://medium.com/javascript-scene/10-interview-questions-every-javascript-developer-should-know-6fa6bdf5ad95#.virt68v82)
 - [w3school](http://www.w3schools.com/)
+- [h5bp's front-end interview questions](https://github.com/h5bp/Front-end-Developer-Interview-Questions)
