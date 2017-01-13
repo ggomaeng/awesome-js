@@ -733,6 +733,28 @@ The arguments to the function should be:
 
 [See Answer](#a1.10.1)
 
+------
+
+<a name='1.10.2'/>
+
+##### 1.10.2
+
+Given a node from a DOM tree find the node in the same position from an identical DOM tree. See diagram below for clarity.
+
+```
+ A         B
+
+ O        O
+ |\       |\
+ O O      O O
+  /|\      /|\
+ O O O    O O O
+      \        \
+       O        O
+```
+
+[See Answer](#a1.10.2)
+
 ----------
 
 <a name='1.11'/>
@@ -2261,6 +2283,44 @@ function Traverse(p_element,p_callback) {
 ```
 
 [Back to Question](#1.10.1)
+
+-----
+
+<a name='a1.10.2'/>
+
+#### 1.10.2
+
+```javascript
+function indexOf(arrLike, target) {
+    return Array.prototype.indexOf.call(arrLike, target);
+}
+
+// Given a node and a tree, extract the nodes path 
+function getPath(root, target) {
+    var current = target;
+    var path = [];
+    while(current !== root) {
+        path.unshift(indexOf(current.parentNode.childNodes, current));
+        current = current.parentNode;
+    }
+    return path;
+}
+
+// Given a tree and a path, let's locate a node
+function locateNodeFromPath(root, path) {
+    var current = root;
+    for(var i = 0, len = path.length; i < len; i++) {
+        current = current.childNodes[path[i]];
+    }
+    return current;
+}
+
+function getDoppleganger(rootA, rootB, target) {
+    return locateNodeFromPath(rootB, getPath(rootA, target));
+}
+```
+
+[Back to Question](#1.10.2)
 
 -------
 
