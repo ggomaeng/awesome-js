@@ -2290,6 +2290,10 @@ function Traverse(p_element,p_callback) {
 
 #### 1.10.2
 
+Given two trees which have identical structure, and a specified node within the first tree, locate the node in the second tree with the same position within the structure.
+
+If we have no other information about the two trees then the position of each node can be characterized as a path from the root node where each step in the path is specified as an index into the childNode array.
+
 ```javascript
 function indexOf(arrLike, target) {
     return Array.prototype.indexOf.call(arrLike, target);
