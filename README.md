@@ -27,7 +27,8 @@ Maintained by: Sung Woo Park
     - [2.3 - Flattening Array](#2.3) 
     - [2.4 - Reordering Objects in an Array](#2.4) 
     - [2.5 - Replacing Substring](#2.5) 
-    - [2.6 - Move Zeroes](#2.6) 
+    - [2.6 - Move Zeroes](#2.6)
+    - [2.7 - Singles](#2.7) 
 - [Answers](#answers)
 - [Reference Books](#reference-books)
 - [Credits](#credits)
@@ -878,6 +879,25 @@ For example, given `nums = [0, 1, 0, 3, 12]`, after calling your function, `nu
 2. Minimize the total number of operations.
 
 [See Answer](#a2.6)
+
+-------
+
+<a name='2.7'/>
+
+#### 2.7 Singles
+
+Given an array of integers, every element appears twice except for one. Find that single one.
+
+*Note: Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?*
+
+**Example :**
+
+```javascript
+Input : [1 2 2 3 1]
+Output : 3
+```
+
+[See Answer](#a2.7)
 
 ---------
 
@@ -2570,6 +2590,30 @@ var moveZeroes = function(nums) {
 ```
 
 [Back to Question](#2.6)
+
+-------
+
+<a name='a2.7'/>
+
+### 2.7 Singles
+
+^= is a XOR bitwise operator. Find more information about XOR [here](https://en.wikipedia.org/wiki/Exclusive_or)
+
+```javascript
+module.exports = { 
+	//param A : array of integers
+	//return an integer
+	singleNumber : function(A){
+	    var a;
+	    A.forEach(function(item){
+	      a ^= item;  
+	    });
+	    return a;
+	}
+};
+```
+
+[Back to Question](#2.7)
 
 --------
 
