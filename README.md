@@ -2489,6 +2489,22 @@ console.log(isPalindrome("A car, a man, a maraca"));  // logs 'true'
 
 ### 2.2 Square Root
 
+#### To integer value
+
+```javascript
+function sqrt(number) {
+    for (let i = 0; i * i <= number; i++) {
+        if (i * i === number)
+            return i;
+   }
+   return number; // don't know if you should have this line in case nothing found
+}
+```
+
+
+
+#### To precise decimal point
+
 ```javascript
 //@param number number to find the square root of
 //@param guess number of guesses
@@ -2528,6 +2544,17 @@ function flatten(input) {
     loop(input);
     return out;
 }
+```
+
+OR
+
+```javascript
+var list1 = [[0, 1], [2, 3], [4, 5]];
+var list2 = [0, [1, [2, [3, [4, [5]]]]]];
+
+const flatten = arr => arr.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
+flatten(list1); // returns [0, 1, 2, 3, 4, 5]
+flatten(list2); // returns [0, 1, 2, 3, 4, 5]
 ```
 
 [Back to Question](#2.3)
