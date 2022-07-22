@@ -2657,3 +2657,4 @@ module.exports = {
 - [Medium—Eric Elliot](https://medium.com/javascript-scene/10-interview-questions-every-javascript-developer-should-know-6fa6bdf5ad95#.virt68v82)
 - [w3school](http://www.w3schools.com/)
 - [h5bp's front-end interview questions](https://github.com/h5bp/Front-end-Developer-Interview-Questions)
+- [Scaler](https://www.scaler.com/topics/javascript/)
