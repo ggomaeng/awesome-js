@@ -2649,6 +2649,7 @@ module.exports = {
 - [JavaScript: The Good Parts](http://shop.oreilly.com/product/9780596517748.do)
 - [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS)
 - [Programming Community Curated Reference Books](https://hackr.io/tutorials/learn-javascript?sort=upvotes&tags%5B%5D=6)
+- [JavaScript Cheat Sheet: Basics to Advanced](https://www.interviewbit.com/javascript-cheat-sheet/)
 
 ## Credits
 
